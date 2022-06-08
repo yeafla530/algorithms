@@ -8,6 +8,7 @@
 // 부분합문제? no 
 function solution(d, budget) {
     var answer = 0;
+    // 숫자 sort는 조심
     d = d.sort((a,b) => a - b)
     sum = 0
     for (let i = 0; i < d.length; i++) {
