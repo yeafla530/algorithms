@@ -18,7 +18,7 @@ console.log(table["key"])
 
 // 여러 편한 method 제공
 // 순회를 편하게 할 수 있음
-const table3 = new Mat();
+const table3 = new Map();
 table3.set("key", 100)
 table3.set("key2", "Hello")
 console.log(table3["key"]) //undefined
