@@ -42,7 +42,7 @@ bfs(graph, 1, visited)
 // 스택 최상단 노드에 방문하지 않은 인접노드 있으면 그 인접노드를 스택에 넣고 방문처리
 // 방문하지 않은 인접노드가 없으면 스택에서 최상단 노드를 꺼낸다
 // 2번의 과정을 더이상 수행할 수 없을때까지 반복
-function dfs(graph, v, visited, result) {
+function dfs(graph, v, visited) {
     visited[v] = true
     console.log(v + '\t')
     for (const i of graph[v]) {
@@ -65,5 +65,4 @@ let graph2 = [
 ]
 
 let visited2 = Array(9).fill(false)
-let result = ''
-dfs(graph, 1, visited, result)
+dfs(graph, 1, visited2)
