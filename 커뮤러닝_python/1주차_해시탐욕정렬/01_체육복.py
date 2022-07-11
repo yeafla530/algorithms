@@ -16,7 +16,7 @@ def solution(n, lost, reserve):
         # print(item)
         # print(downNum in new_reserve)
         if downNum in new_reserve:
-            print(downNum)
+            # print(downNum)
             new_reserve.remove(downNum)
 
         elif upNum in new_reserve:
