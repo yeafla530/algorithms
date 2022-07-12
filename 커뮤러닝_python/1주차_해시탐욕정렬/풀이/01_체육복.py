@@ -58,3 +58,4 @@ def solution(n, lost, reserve):
         
     # 빌리지 못한 학생
     return n - len(l)    
+
