@@ -42,15 +42,21 @@ function solution(id_list, report, k) {
 }
 
 // 다른 사람 풀이
+// set과 map을 이용한 풀이
 function solution(id_list, report, k) {
+    // 중복 제거 & 나누기
     let reports = [...new Set(report)].map(a=>{return a.split(' ')});
     let counts = new Map();
+    // 신고 받은 사람 수 세기 
+    // Map : set, get 이용하기
     for (const bad of reports){
         counts.set(bad[1],counts.get(bad[1])+1||1)
     }
     let good = new Map();
     for(const report of reports){
+        // k번 이상 신고 받은 사람 있으면
         if(counts.get(report[1])>=k){
+            // 
             good.set(report[0],good.get(report[0])+1||1)
         }
     }
