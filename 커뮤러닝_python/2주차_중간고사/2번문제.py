@@ -26,3 +26,16 @@ def solution(people, tshirts):
 
 
     return answer
+
+
+# 다른사람 풀이
+def solution(people, tshirts):
+    answer = 0
+    people.sort()
+    tshirts.sort()
+    while tshirts and people:
+        if people[-1] <= tshirts[-1]:
+            tshirts.pop()
+            answer += 1
+        people.pop()
+    return answer
