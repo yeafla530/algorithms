@@ -141,4 +141,5 @@ def calculate_time(time):
     if minute >= 60:
         hour += 1
         minute -= 60
+    # zfill : 남는 자릿수에 0채우기
     return str(hour).zfill(2) + ":" + str(minute).zfill(2)
