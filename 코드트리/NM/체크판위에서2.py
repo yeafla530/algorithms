@@ -4,7 +4,7 @@
 
 r, c = map(int, input().split())
 mapping = [list(input().split()) for _ in range(r)]
-
+cnt = 0
 # 점프후첫번째로 밟게되는위치, 두번째로 밟게되는 위치를 전부정해보는 완탐진행
 for i in range(1, r):
     for j in range(1, c):
@@ -14,3 +14,4 @@ for i in range(1, r):
                     mapping[i][j] != mapping[k][l] and\
                     mapping[k][l] != mapping[r-1][m-1]:
                         cnt += 1
+print(cnt)
