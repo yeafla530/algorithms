@@ -11,9 +11,12 @@ for _ in range(2):
 if len(zenga) == 0:
     print(0)
 else:
-    print(len(zen))
-    for i in range(len(zenga)):
-        print(zenga[i])
+    print(len(zenga))
+    # 출력2
+    print(*zenga, sep = '\n')
+    # 출력1
+    # for i in range(len(zenga)):
+    #     print(zenga[i])
 
 
 # 시뮬레이션 방식
@@ -36,14 +39,13 @@ def cut_array(start, end):
     for i in range(end_of_array):
         numbers[i] = temp[i]
 
-    return numbers
 
 
 for i in range(2):
     s, e = map(int, input().split())
     # [s, e]
     # 젠가 자르기
-    numbers = cut_array(s-1, e-1)
+    cut_array(s-1, e-1)
 
 print(end_of_array)
 for i in range(end_of_array):
