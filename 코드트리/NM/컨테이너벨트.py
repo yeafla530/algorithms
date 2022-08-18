@@ -1,3 +1,4 @@
+# 강사님 풀이
 n, t = map(int, input().split())
 # 첫번째는 순서 그대로 두번째는 reverse
 # 1차원 배열로 생각해서 오른쪽으로 민것으로 생각
@@ -36,3 +37,25 @@ print(*a[n:])
 # for i in range(n):
 #     print(a[i+n], end=" ")
 
+
+
+
+# 나의 풀이
+n, t = map(int, input().split())
+u = list(map(int, input().split()))
+d = list(map(int, input().split()))
+
+a = u + d
+
+# 오른쪽으로 밀어지는 경우
+t = t % (2*n)
+
+for i in range(t):
+    a = a[-1:] + a[:-1]
+
+for i in range(n):
+    print(a[i], end=" ")
+print()
+
+for i in range(n):
+    print(a[n+i], end=" ")
