@@ -18,3 +18,25 @@ for i in range(n-3+1):
 
 
 print(max_coin)
+
+
+# 강사님 풀이
+n = int(input())
+arr = [list(map(int, input().split())) for _ in range(n)]
+
+# 기준점 n-2, n-2 
+# 9 * (n-2) * (n-2) => n 의 max값은 20 = 3600 < 1억
+max_gold = 0
+# (row, col) 3*3 정사각형 기준점
+for row in range(n-2):
+    for col in range(n-2):
+
+        # 3*3 정사각형 gold 합
+        num_of_gold = 0
+        for i in range(row, row+3):
+            for j in range(col, col+3):
+                num_of_gold += arr[i][j]
+        # 결과값 업데이트
+        max_gold = max(max_gold, num_of_gold)
+
+print(max_gold)
