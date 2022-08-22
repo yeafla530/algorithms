@@ -9,6 +9,7 @@ def choose(cnt):
         return 
     # 재귀호출
     for i in range(1, k+1):
+        # 만약 앞에 두개의 숫자가 없거나, 앞 두개 숫자와 지금 정하려는 숫자가 같은 경우가 아닐때 
         if cnt < 3 or not (i == arr[-1] and i == arr[-2]):
             arr.append(i)
             choose(cnt+1)
