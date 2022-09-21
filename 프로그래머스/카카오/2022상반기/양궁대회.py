@@ -1,54 +1,61 @@
-import sys
-# Recursion Error 방지- 재귀의 한도 10000까지 풀어주기
-sys.setrecursionlimit(10**7)
-
 def solution(n, info):
-    answer = []
-    # 어피치가 화살 n발을 다 쏜 후에 라이언이 화살 n발을 쏨
-    # 점수계산 
-        # k점수에 맞춘 화살 횟수가 a > b인 경우 a가 k점을 가져감
-        # a == b인경우 어피치가 k점 가져감
-        # k점 여러개 맞추면 k점만 가져감
-        # a = b = 0인경우, 누구도 k점을 가져가지 않음
-    # 최종점수
-        # 같을 경우 어피치가 우승
-    # 라이언이 가장 큰 점수 차이로 우승할 수 있는 방법이 여러 가지 일 경우, 
-    # 가장 낮은 점수를 더 많이 맞힌 경우를 return 해주세요. 
+    answer = [0] * 11
+    # 라이언 점수표
+    tmp = [0] * 11
+    maxDiff = 0
     
-    # 어피치가 쏜 과녁의 점수개수 = 10점부터 0점까지 순서대로 담은 info
-    # 라이언이 가장 큰 점수차이로 우승하기 위해 n발의 화살을 어떤 과녁점수에 맞혀야 하는지 10점부터 0점가지 담기
-    
-    # 라이언이 우승할 방법이 없는 경우 return할 정수배열의 길이는 1
-    # 라이언이 어떻게 화살을 쏘든 라이언의 점수가 어피치의 점수보다 낮거나 같으면 [-1]을 return 해야 합니다.
-    lion = [0] * 11
-    # 이길 수 있는 경우로 초기화
-    for i in range(len(info)):
-        lion[i] = info[i] + 1
-    
-    apeach = sum(info)
-    d = {}
-    # 화살개수가 n개가 되게 하는 조합
-    # 백트레킹?
-    
-    s = apeach
-    def sum_score(score, idx, arrow_n):
-        nonlocal s
-        print(d)
-        if arrow_n > n:
-            return
-        if arrow_n == n:
-            s = max(s, score)
+    # 2진수로 1~1023까지
+    # 0000000001 ~ 1111111111
+    # 이기게 만들 점수
+    for subset in range(1, 1 << 10):
+        ryon = 0
+        apeach = 0
+        cnt = 0
+        
+        # 10 9 8 7 6 5 4 3 2 1
+        for i in range(10):
+            # 10~1점순으로 돌면서 
+            # 라이언이 이겨서 얻을 점수를 계산해준다
+            if subset & (1 << i):
+                ryon += 10 - i
+                tmp[i] = info[i] + 1
+                cnt += tmp[i]
+            # 라이언이 해당 과녁을 안쏘는 경우
+            else:
+                tmp[i] = 0
+                # 어피치가 이기는 경우
+                if info[i]:
+                    apeach += 10 - i
+        
+        # 라이언이 사용한 화살이 더 많으면 넘어감
+        if cnt > n: continue
+        
+        # 유효한 경우
+        # 화살이 남는 경우 : 
+        # 전체 화살에서지금까지 쏜 화살을 빼준다
+        tmp[10] = n - cnt
+        
+        # 최대 점수차 여러가지인 경우
+        # 낮은 점수를 더 많이 맞힌경우 return
+        if ryon - apeach == maxDiff:
+            # 0점부터 비교
+            for i in reversed(range(11)):
+                if tmp[i] > answer[i]:
+                    maxDiff = ryon - apeach
+                    answer = tmp[:]
+                    break
+                elif tmp[i] < answer[i]:
+                    break
             
-            print(s, d)
-            return
         
-        d[idx] = d.get(idx, 0) + lion[idx]
-        sum_score(score+(10-idx), idx+1, arrow_n+lion[idx])
-        d[idx] = d.get(idx, 0) - lion[idx]
-        
-        
-        
-    sum_score(0, 0, 0)
-    # print(d)
+        # 라이언이 이기는데 최대 점수차로 이기는 경우
+        elif ryon - apeach > maxDiff:
+            maxDiff = ryon - apeach
+            answer = tmp[:]
+            
+    if maxDiff == 0:
+        answer = [-1]
+    
+    
     return answer
 
