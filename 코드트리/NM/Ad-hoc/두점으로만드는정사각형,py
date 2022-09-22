@@ -1,0 +1,11 @@
+# 왼쪽 하단
+x1, y1, x2, y2 = map(int, input().split())
+# 오른쪽 상단
+a1, b1, a2, b2 = map(int, input().split())
+
+width = max(a2, x2) - min(a1, x1)
+height = max(b2, y2) - min(b1, y1)
+
+n = max(width, height)
+
+print(n * n)
