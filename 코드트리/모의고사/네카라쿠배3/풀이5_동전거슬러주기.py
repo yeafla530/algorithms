@@ -12,7 +12,7 @@
 # 배낭 채우기 문제랑같음
 # 난 못품 ㅎ,,
 
-
+# https://www.codetree.ai/missions/2/problems/knapsack/description
 # 배낭 채우기에서 value값이 전부 1인거랑 이 문제랑 똑같음
 # 동등한 상황은?
 # 지금까지 고려한 동전의 위치 (i)
