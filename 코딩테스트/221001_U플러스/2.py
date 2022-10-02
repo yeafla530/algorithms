@@ -1,3 +1,7 @@
+# 꽤 사골문제
+# a ( * ) => *를 a만큼 반복해라
+# 중첩등장 가능 
+# 3(r2(h)s)라면 rhhsrhhsrhhs로 복원가능
 
 
 def solution(compressed):

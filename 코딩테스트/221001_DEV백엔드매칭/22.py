@@ -86,5 +86,4 @@ def solution(maps):
 
     return answer
 
-
-    return answer
+solution(["AABCA.QA", "AABC..QX", "BBBC.Y..", ".A...T.A", "....EE..", ".M.XXEXQ", "KL.TBBBQ"])
