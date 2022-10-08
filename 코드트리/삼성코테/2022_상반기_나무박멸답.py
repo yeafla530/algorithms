@@ -112,7 +112,7 @@ def step_three():
                 max_del = cnt
                 max_x = i
                 max_y = j
-    print(max_x, max_y, max_del)
+    # print(max_x, max_y, max_del)
     ans += max_del
 
     # 찾은 칸에 제초제를 뿌립니다.
@@ -154,9 +154,11 @@ for _ in range(m):
     # 제초제의 기간을 1년 감소시킵니다.
     delete_herb()
 
+
     # 3단계 : 가장 많이 박멸되는 칸에 제초제를 뿌립니다.
     step_three()
     print(tree)
-    print(herb)
+    print(ans)
+
 
 print(ans)
