@@ -152,7 +152,7 @@ def move_packman():
     # 상하좌우로만 움직일 수 있음 (3칸)
     dxs = [-1, 0, 1, 0]
     dys = [0, -1, 0, 1]
-    max_score = 0
+    max_score = -987654321
     # 팩맨 위치 찾기
     for i in range(n):
         for j in range(n):
@@ -211,52 +211,53 @@ def complete_copy():
 
             egg_graph[i][j] = []
 
+# print(graph)
 for _ in range(t):
     # 1. 몬스터 복제 시도
     try_monster_copy()
-    print("알")
-    for i in range(n):
-        for j in range(n):
-            print(egg_graph[i][j], end=" ")
-        print()
+    # print("알")
+    # for i in range(n):
+    #     for j in range(n):
+    #         print(egg_graph[i][j], end=" ")
+    #     print()
     # 2. 몬스터 이동
     move_monster()
-    print("몬스터이동")
-    for i in range(n):
-        for j in range(n):
-            print(graph[i][j], end=" ")
-        print()
+    # print("몬스터이동")
+    # for i in range(n):
+    #     for j in range(n):
+    #         print(graph[i][j], end=" ")
+    #     print()
     # 3. 팩맨 이동
     max_score = 0
     result_dir_arr = []
     dir_arr = []
     move_packman()
-    print("팩맨")
-    print(result_dir_arr, max_score)
-    for i in range(n):
-        for j in range(n):
-            print(packman_graph[i][j], end=" ")
-        print()
+    # print("팩맨")
+    # print(result_dir_arr, max_score)
+    # for i in range(n):
+    #     for j in range(n):
+    #         print(packman_graph[i][j], end=" ")
+    #     print()
 
 
     delete_graph = [[[] for _ in range(n)] for _ in range(n)]
     # 4. 시체 소멸
     delete_dead()
-    print("시체")
-    for i in range(n):
-        for j in range(n):
-            print(dead_graph[i][j], end=" ")
-        print()
+    # print("시체")
+    # for i in range(n):
+    #     for j in range(n):
+    #         print(dead_graph[i][j], end=" ")
+    #     print()
 
 
 
     # 5. 복제완성
     complete_copy()
-    print("복제완성")
-    for i in range(n):
-        for j in range(n):
-            print(graph[i][j], end=" ")
-        print()
+    # print("복제완성")
+    # for i in range(n):
+    #     for j in range(n):
+    #         print(graph[i][j], end=" ")
+    #     print()
 
 
 
