@@ -78,6 +78,7 @@ def find_min_cnt(idx, cnt):
     # 특정 조합에 대해
     if idx == len(blocks):
         # 전부 하나로 이어져 있다면 답을 갱신합니다.
+        print(grid)
         if is_possible():
             ans = min(ans, cnt)
 
