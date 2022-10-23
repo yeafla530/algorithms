@@ -1,8 +1,17 @@
-let arr = [1, 2, 3, 4]
-let pos = arr.indexOf(3)
+let hash = new Map()
 
+hash.set(1, 0)
+hash.set(2, 0)
+hash.set(3, 0)
 
-let arr1 = arr.splice(pos, 1)
+hash.get(1)
 
-console.log(arr)
-console.log(arr1)
+hash.has(1)
+
+hash.delete(1)
+
+hash.size
+
+for (let [key,value] of hash) {
+    console.log(key, value)
+}
