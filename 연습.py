@@ -1,18 +1,20 @@
-def find_min_cnt(idx, cnt):
-    global ans 
-    if cnt > 6:
-        return
-    
-    if idx == len(blocks):
-        if is_possible():
-            ans = min(ans, cnt)
-    
-        return
-    
-    x, y = blocks[idx]
+import sys
+from collections import deque
+si = sys.stdin.readline
+INF = sys.maxsize
 
-    gid[x][y] - '.'
-    find_min_cnt(idx + 1, cnt + 1)
-    frid[x][y] = '#'
+n, m = map(int, input().split())
+a = [list(map(int, input().split())) for _ in range(n)]
+# 8방향 
+dirs = [(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)]
+dist = [[[INF for _ in range(8)] for _ in range(m)] for _ in range(n)]
 
-    find_min(idx+1, cnt)
+print(dist)
+q = deque()
+q.append((0, 0, 2)) # boot starts at (0, 0) and faces right side
+dist[0][0][2] = 0
+
+while q:
+    x, y, d = q.popleft()
+    # 
+    for dd in [0, 1, 7]:
