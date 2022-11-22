@@ -1,23 +1,25 @@
 def solution(number, limit, power):
     answer = 0
-    arr = [0] * (number+1)
-    
-    for n in range(1, number+1):
-        for i in range(1, n+1):
-            if arr[n] == limit and n % i == 0:
-                arr[n] = power
-                break
-            
-            if n % i == 0:
-                arr[n] += 1
+    def getNum(n):
+        cnt = 0
         
+        for i in range(1, int(n**(1/2))+1):
+            if n % i == 0:
+                cnt += 1
+                
+                if i*i < n:
+                    cnt += 1
+        
+        return cnt
+        
+    for i in range(1, number+1):
+        result = getNum(i)
+        
+        if (result <= limit):
+            answer += result
+        else:
+            answer += power
     
-    answer = sum(arr)
-            
-            
     
     
-    
-    print(arr)
-    answer = sum(arr)
     return answer
