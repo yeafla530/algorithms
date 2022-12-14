@@ -1,0 +1,16 @@
+-- 코드를 입력하세요
+
+-- 보호소 전, 중성화 X, 보호소 나갈때는 중성화
+
+-- 아이디, 종, 이름 조회, 아이디순
+
+SELECT
+    A.ANIMAL_ID,
+    A.ANIMAL_TYPE,
+    B.NAME
+FROM ANIMAL_INS A
+    JOIN ANIMAL_OUTS B ON A.ANIMAL_ID = B.ANIMAL_ID
+WHERE
+    A.SEX_UPON_INTAKE <> B.SEX_UPON_OUTCOME
+ORDER BY A.ANIMAL_ID
+LIMIT 100
