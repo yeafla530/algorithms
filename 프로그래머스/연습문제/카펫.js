@@ -1,3 +1,29 @@
+// 내 풀이
+function solution(brown, yellow) {
+    // 가로가 더 길다 
+    let answer = [0, 0]
+    
+    
+    let yX = 0, yY = 0
+    // 1. 노랑색 가로 세로 구하기
+    for (let i = 1; i <= Math.sqrt(yellow); i++) {
+        if (yellow % i === 0) {
+            yY = i
+            yX = yellow / i
+        
+            if (yX * 2 + yY * 2 + 4 === brown) {
+                answer[0] = yX + 2
+                answer[1] = yY + 2
+            }
+        
+        }  
+    }
+    return answer
+    
+}
+
+
+
 // 완전탐색
 function solution(brown, yellow) {
     var answer = [];
