@@ -33,3 +33,4 @@ for i in range(MAX_INT+1):
             leng = j - i
             max_photo = max(max_photo, leng)
 print(max_photo)
+
