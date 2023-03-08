@@ -19,3 +19,20 @@ def select(a):
 
 
 select(1)
+
+# 내풀이
+k, n = map(int, input().split())
+answer = []
+
+def choose(cnt):
+    if cnt == n:
+        print(*answer)
+        return 
+
+    for i in range(1, k+1):
+        answer.append(i)
+        choose(cnt+1)
+        answer.pop()
+
+
+choose(0)
