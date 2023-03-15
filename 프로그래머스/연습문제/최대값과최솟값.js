@@ -21,6 +21,14 @@ function solution(s) {
 }
 
 function solution(s) {
+    let arr = s.split(' ')
+    arr.sort((a, b) => a-b)
+    console.log(arr)
+    
+    return arr[0] + ' ' + arr[arr.length-1]
+}
+
+function solution(s) {
     let answer = ""
     let arr = s.split(" ")
     
