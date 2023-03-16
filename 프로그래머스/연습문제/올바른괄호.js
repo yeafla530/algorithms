@@ -19,7 +19,27 @@ function solution(s){
     return answer;
 }
 
+function solution(s){
+    let stack = [] 
+    for (const st of s) {
+        if (st == "(") {
+            stack.push(st)
+        } else {
+            if (stack.length) {
+                stack.pop()
+            } else {
+                return false
+            }
+        }
+    }
+    
+    if (stack.length) {
+        return false;   
+    } else {
+        return true
+    }
 
+}
 
 // 다른사람 풀이
 function solution(s){
