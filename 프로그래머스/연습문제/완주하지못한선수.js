@@ -23,3 +23,29 @@ function solution(participant, completion) {
     
     return result
 }
+
+
+function solution(participant, completion) {
+    var people = new Map()
+    for (let i = 0; i < participant.length; i++) {
+        if (people.has(participant[i])) {
+            num = people.get(participant[i]) + 1
+            people.set(participant[i], num)
+        } else {
+            people.set(participant[i], 1)
+        }
+    }
+    for (let j = 0; j < completion.length; j++) {
+        num = people.get(completion[j]) - 1
+        people.set(completion[j], num)
+    }
+    
+    
+    for ([key, value] of people) {
+        if (value === 1) {
+            return key
+        }
+    }
+    
+    
+}
