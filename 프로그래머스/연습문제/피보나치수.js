@@ -15,6 +15,24 @@ function solution(n) {
     return (arr[n-1] + arr[n-2]) % 1234567;
 }
 
+// DP
+function solution(n) {
+    let MAXINT = 100000
+    let ans = 0
+    let dp = new Array(MAXINT).fill(0)
+    
+    dp[1] = 1
+    dp[2] = 1
+    
+    for (let i = 3; i <= n; i++) {
+        dp[i] = (dp[i-1] + dp[i-2])%1234567
+    }
+    
+    return dp[n]
+    
+}
+
+
 
 // 다른 사람 풀이
 function solution(n) {
