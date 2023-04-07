@@ -10,22 +10,19 @@ dirs = [(-1, 0), (0, 1), (0, -1), (1, 0)]
 def in_range(x, y):
     return 0 <= x < n and 0 <= y < n
 
-def detect_line(pos): # (sx, sy)가 머리 사람일 때 팀원들의 좌표 리스트 돌려주는 함수
+def detect_line(pos): # (sx, sy)가 머리 사람일 때 머리부터 꼬리까지 "순서대로" 팀원들의 좌표 리스트 돌려주는 함수
     teammates = [pos]
     x, y = pos
 
-    # 꼬리를 만날때까지 진행
+    # 머리에서 시작해서 한 칸씩 꼬리를 향해 이동하자!
     while a[x][y] != 3:
         for dx, dy in dirs:
             nx, ny = x + dx, y + dy
-            # 다음으로 보고 있는 좌표가 나의 오기 전 좌표가 아닌 경우
-            # 머리쪽이 아닌 꼬리쪽으로 나아가기
-            # 격자를 벗어나지 않고 / 머리쪽으로 다시 돌아가지 않으며 / 이동선 위를 벗어나지 않는다면
-            if not in_range(nx, ny): continue
-            if len(teammates) >= 2 and (nx, ny) == teammates[-2]: continue
-            # 4가 없는 경로에서 머리에서 꼬리로 이동하면 안됨
-            if a[x][y] == 1 and a[nx][ny] == 3: continue
-            if a[nx][ny] not in [2, 3]: continue
+            
+            if not in_range(nx, ny): continue # 격자 벗어나지 않고
+            if len(teammates) >= 2 and (nx, ny) == teammates[-2]: continue # 머리 쪽으로 다시 돌아가지 않고
+            if a[x][y] == 1 and a[nx][ny] == 3: continue # 4가 없는 경로에서 머리에서 꼬리로 이동하면 안됨  
+            if a[nx][ny] not in [2, 3]: continue # 이동선 위를 벗어나지 않는다면
             
             x, y = nx, ny
             break
@@ -33,7 +30,8 @@ def detect_line(pos): # (sx, sy)가 머리 사람일 때 팀원들의 좌표 리
         teammates.append((x, y))
     return teammates
 
-# 모든 팀을 찾아서 돌려줌
+
+# 모든 팀의 좌표를 찾아서 돌려줌
 def detect_whole_teams():
     # 1. 모든 머리를 찾고
     heads = []
@@ -50,7 +48,8 @@ def detect_whole_teams():
 
     return teams
 
-def move_one_step(teammates): # teammates가 한 팀을 순서대로 쓴 경우
+# 모든 팀 중 한 팀을 조건에 맞게 이동시켜줌
+def move_one_step(teammates):
     # 머리가 이동할 좌표 찾기
     x, y = teammates[0]
     
@@ -62,23 +61,25 @@ def move_one_step(teammates): # teammates가 한 팀을 순서대로 쓴 경우
         if a[nx][ny] not in [3, 4]: continue
         # 모든 머리 꼬리 이동시키기
         # 인접한 좌표 중 3, 4로 이동 (4가 없는 칸 존재)
-        new_coords = []
-        for teammate in teammates:
-            cx, cy = teammate
-            # 각 좌표가 어디로 갈지 적어줌 
-            new_coords.append((nx, ny))
-            nx, ny = cx, cy
-            a[cx][cy] = 4
+        # nx, ny := 머리가 이동할 위치
+        break
+    new_coords = [] # 각 팀원이 가게 될 좌표
+    for teammate in teammates:
+        cx, cy = teammate
+        # 각 좌표가 어디로 갈지 적어줌 
+        new_coords.append((nx, ny))
+        nx, ny = cx, cy
+        a[cx][cy] = 4
 
-        for idx, (x, y) in enumerate(new_coords):
-            if idx == 0: # 머리가 새롭게 이동한 위치
-                a[x][y] = 1
-            elif idx == len(new_coords) - 1: # 꼬리가 새롭게 이동한 위치
-                a[x][y] = 3
-            else: # 머리가 새롭게 이동한 위치
-                a[x][y] = 2
+    for idx, (x, y) in enumerate(new_coords):
+        if idx == 0: # 머리가 새롭게 이동한 위치
+            a[x][y] = 1
+        elif idx == len(new_coords) - 1: # 꼬리가 새롭게 이동한 위치
+            a[x][y] = 3
+        else: # 머리가 새롭게 이동한 위치
+            a[x][y] = 2
 
-        return
+    return
 
 
 def move_whole_team():
@@ -109,6 +110,7 @@ def throw_ball(round_num) -> int:
         x2, y2 = n, 4 * n - round_num - 1
     
     # 방향 설정
+    # (x1, y1)에서 (x2, y2)방향으로 공을 던질 것이다
     dx, dy = (x2 - x1) // n , (y2 - y1) // n
 
     x, y = x1, y1
@@ -121,6 +123,7 @@ def throw_ball(round_num) -> int:
     
     return None
 
+# 점수 계산
 def calculate(coord):
     teams = detect_whole_teams()
     for teammates in teams:
@@ -128,7 +131,7 @@ def calculate(coord):
             if teammate == (coord):
                 x1, y1 = teammates[0]
                 x2, y2 = teammates[-1]
-
+                # 머리와 꼬리 반전
                 a[x1][y1], a[x2][y2] = a[x2][y2], a[x1][y1]
                 return idx * idx
     return 0
