@@ -1,0 +1,22 @@
+from collections import deque
+
+arr = [''] + list(input())
+n = len(arr)
+ans = 0
+j = 1
+
+new_arr = deque()
+new_arr.append(arr[1])
+
+for i in range(1, n):
+    while j + 1 < n and (arr[j+1] not in new_arr):
+        # print('1', new_arr, i, j)
+        j += 1
+        new_arr.append(arr[j])
+        # print('2', new_arr, i, j)
+
+    
+    ans = max(ans, j - i + 1)
+    new_arr.popleft()
+
+print(ans)
