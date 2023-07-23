@@ -157,3 +157,36 @@ ORDER BY A.AUTHOR_ID, B.CATEGORY DESC
 
 
 
+### CASE
+
+* IF문과 같은 문법
+* CASE (WHEN, THEN, WHEN, THEN, ELSE)
+* WHEN 컬럼 IN 조건으로 사용
+
+```mysql
+SELECT CAR_ID,
+    -- 두가지 경우 생각
+    CASE 
+        WHEN CAR_ID IN (
+            SELECT CAR_ID
+            FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY
+            WHERE '2022-10-16' BETWEEN START_DATE AND END_DATE) THEN '대여중'
+        ELSE
+            '대여가능'
+            
+    END "AVAILABILITY"
+FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY
+```
+
+
+
+
+
+### BETWEEN
+
+* A BETWEEN B : A 이상 B 이하
+
+```
+WHERE '2022-10-16' BETWEEN START_DATE AND END_DATE
+```
+
