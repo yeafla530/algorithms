@@ -41,6 +41,23 @@ SELECT A.ADDRESS, ROUND(AVG(B.REVIEW_SCORE), 2) AS SCORE
 
 
 
+### TRUNCATE
+
+* 자릿수 버림
+
+```mysql
+SELECT (
+    CASE 
+        WHEN PRICE < 10000 THEN 0
+        ELSE TRUNCATE(PRICE, -4)
+        END
+) AS PRICE_GROUP, PRODUCTS
+```
+
+
+
+
+
 ### GROUP BY ... HAVING
 
 * GROUP BY는 특정 컬럼을 그룹화 할 때 사용
@@ -184,7 +201,7 @@ FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY
 
 ### BETWEEN
 
-* A BETWEEN B : A 이상 B 이하
+* WHERE 조건 A BETWEEN B : 조건이 A 이상 B 이하에 있는가
 
 ```
 WHERE '2022-10-16' BETWEEN START_DATE AND END_DATE
