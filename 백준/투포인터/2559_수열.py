@@ -22,3 +22,17 @@ else:
             s -= arr[i]
 
     print(ans)
+
+
+### 다른사람 풀이
+n, k = map(int, input().split())
+arr = [0] + list(map(int, input().split()))
+
+part_sum = sum(arr[:k])
+result_list = [part_sum]
+
+for i in range(0, len(arr)-k):
+    part_sum = part_sum - arr[i] + arr[i+k]
+    result_list.append(part_sum)
+
+print(max(result_list))
