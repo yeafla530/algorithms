@@ -14,7 +14,7 @@ for i in range(n-1, -1, -1): # 이번에 nxt[i]를 계산할 차례
     if i + 1 < n:
         next[i][arr[i+1]] = i + 1
 
-
+print(next)
 # greedy하게 이동
 cur, cnt = 0, 0
 # 다음에 이동할 위치는 현재 위치에서 이동할 수 있는 다음 1, 2, 3
@@ -27,7 +27,7 @@ print(cnt)
 
 '''
 6
-1 2 2 1 3
+1 2 2 2 1 3
 => 1
 
 5 
